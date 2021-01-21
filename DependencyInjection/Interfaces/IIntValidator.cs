@@ -8,6 +8,6 @@ namespace DependencyInjection
 {
     interface IIntValidator
     {
-        int IsValid(string s);
+        bool IsValid(string s, out int retVal);
     }
 }

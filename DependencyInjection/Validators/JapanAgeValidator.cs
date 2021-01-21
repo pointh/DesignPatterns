@@ -9,7 +9,7 @@ namespace DependencyInjection.Validators
     /// <summary>
     /// Validátor pro Japonské občany
     /// </summary>
-    class JapanAgeValidator:IIntValidator
+    class JapanAgeValidator : IIntValidator
     {
         /// <summary>
         /// Validační metoda, která je implementací interface IIntValidator
@@ -20,16 +20,24 @@ namespace DependencyInjection.Validators
         /// není parsovatelný na int nebo je parsované číslo mimo rozsah
         /// (1, 200).
         /// </returns>
-        public int IsValid(string s)
+
+        public bool IsValid(string s, out int retVal)
         {
+            retVal = int.MinValue;
             int i;
-            if (int.TryParse(s, out i) == false)
-                return int.MinValue;
+            if (int.TryParse(s, out i) == false) // protože formát
+            {
+                return false;
+            }
 
-            if (i > 0 && i < 200)
-                return i;
+            if (i > 0 && i < 150) // protože rozsah
+            {
+                retVal = i;
+                return true;
+            }
 
-            return int.MinValue;
+            return false;
         }
+
     }
 }

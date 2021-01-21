@@ -11,16 +11,22 @@ namespace DependencyInjection.Validators
 
     class AgeValidator : IIntValidator
     {
-        public int IsValid(string s)
+        public bool IsValid(string s, out int retVal)
         {
+            retVal = int.MinValue;
             int i;
-            if (int.TryParse(s, out i) == false)
-                return int.MinValue;
+            if (int.TryParse(s, out i) == false) // protože formát
+            {
+                return false;
+            }
 
-            if (i > 0 && i < 150)
-                return i;
+            if (i > 0 && i < 150) // protože rozsah
+            {
+                retVal = i;
+                return true;
+            }
 
-            return int.MinValue;
+            return false;
         }
     }
 }

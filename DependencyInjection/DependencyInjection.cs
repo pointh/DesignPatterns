@@ -10,8 +10,8 @@ namespace DependencyInjection
     // Client class
     class Osoba
     {
-        IIntValidator vekValidator;
-        IStringValidator surnameValidator;
+        readonly IIntValidator vekValidator;
+        readonly IStringValidator surnameValidator;
         public string Jmeno { get; set; }
         public int Vek { get; set; }
 
@@ -26,17 +26,14 @@ namespace DependencyInjection
 
         public void ConsoleInput()
         {
-            Osoba o = new Osoba();
-
-            bool nameOK = false;
-            bool vekOK = false;
-            int vek;
+            bool nameOK;
+            bool vekOK;
 
             do
             {
                 Console.Write("Příjmení: ");
                 string s = Console.ReadLine();
-                if (s == string.Empty) return;
+                if (string.IsNullOrEmpty(s)) return;
                 if (nameOK = surnameValidator.IsValid(s))
                 {
                     this.Jmeno = s;
@@ -48,8 +45,8 @@ namespace DependencyInjection
             {
                 Console.Write("Věk: ");
                 string s = Console.ReadLine();
-                if (s == string.Empty) return;
-                if(vekOK = vekValidator.IsValid(s, out vek))
+                if (string.IsNullOrEmpty(s)) return;
+                if(vekOK = vekValidator.IsValid(s, out int vek))
                 {
                     this.Vek = vek;
                 }
@@ -63,7 +60,7 @@ namespace DependencyInjection
     }
     class Program
     {
-        static void Main(string[] args)
+        static void Main()
         {
             // všechny osoby mimo Japonců
             // závislosti injektované v konstruktoru

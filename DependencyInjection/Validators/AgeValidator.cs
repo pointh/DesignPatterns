@@ -14,8 +14,8 @@ namespace DependencyInjection.Validators
         public bool IsValid(string s, out int retVal)
         {
             retVal = int.MinValue;
-            int i;
-            if (int.TryParse(s, out i) == false) // protože formát
+
+            if (int.TryParse(s, out int i) == false) // protože formát
             {
                 return false;
             }

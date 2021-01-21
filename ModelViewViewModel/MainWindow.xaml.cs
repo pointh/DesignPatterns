@@ -38,7 +38,7 @@ namespace ModelViewViewModel
         // Prověření, že ve finále se změnila data v modelu...
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            MessageBox.Show(ZpravaModel.TextZpravy);
+            MessageBox.Show(ZpravaModel.VsechnyZpravy[0]);
         }
     }
 }

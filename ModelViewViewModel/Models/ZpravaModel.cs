@@ -6,8 +6,10 @@ using System.Threading.Tasks;
 
 namespace ModelViewViewModel.Models
 {
-    class ZpravaModel
+    public class ZpravaModel
     {
-        public static string TextZpravy { get; set; } = "Strašně tajná zpráva";
+        public string TextZpravy;
+
+        public static string[] VsechnyZpravy = new string[2] { "První zpráva", "Druhá zpráva" };
     }
 }

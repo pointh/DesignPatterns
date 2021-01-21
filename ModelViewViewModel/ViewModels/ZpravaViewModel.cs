@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
+using System.Diagnostics;
 
 // Tohle je třeba nainstalovat přes NuGet, jinak Command dá moc práce
 // The MVVM Light Toolkit helps you to separate your View from your Model
@@ -23,7 +24,7 @@ namespace ModelViewViewModel.ViewModels
 /// ViewModel pro aplikaci
 /// </summary>
 
-    class ZpravaViewModel:INotifyPropertyChanged  
+    public class ZpravaViewModel:INotifyPropertyChanged  
     {
         // pro navázání komunikace mezi GUI a ViewModel
         public event PropertyChangedEventHandler PropertyChanged;
@@ -31,7 +32,7 @@ namespace ModelViewViewModel.ViewModels
         public ZpravaViewModel()
         {
             // Inicializace z modelu
-            Zprava = ZpravaModel.TextZpravy;
+            Zprava = ZpravaModel.VsechnyZpravy[0];
         }
 
         private string zprava;
@@ -43,7 +44,7 @@ namespace ModelViewViewModel.ViewModels
             set 
             { 
                 zprava = value;
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Zprava"));
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Zprava)));
             }
         }
 
@@ -60,10 +61,10 @@ namespace ModelViewViewModel.ViewModels
                     _sendCommand = new RelayCommand(
                         () => { 
                             // Tady je práce, která se má odmakat, když se spustí command
-                            MessageBox.Show(Zprava);
+                            Debug.WriteLine(Zprava);
 
                             // Uložení do modelu
-                            ZpravaModel.TextZpravy = Zprava;
+                            ZpravaModel.VsechnyZpravy[0] = Zprava;
                         });
                 }
                 return _sendCommand;

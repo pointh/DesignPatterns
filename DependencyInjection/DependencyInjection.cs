@@ -29,6 +29,7 @@ namespace DependencyInjection
             Osoba o = new Osoba();
 
             bool nameOK = false;
+            bool vekOK = false;
             int vek;
 
             do
@@ -48,10 +49,11 @@ namespace DependencyInjection
                 Console.Write("Věk: ");
                 string s = Console.ReadLine();
                 if (s == string.Empty) return;
-                vek = vekValidator.IsValid(s);
-                if (vek > 0)
+                if(vekOK = vekValidator.IsValid(s, out vek))
+                {
                     this.Vek = vek;
-            } while (vek < 0);
+                }
+            } while (vekOK == false);
         }
 
         public override string ToString()

@@ -8,8 +8,29 @@ namespace ModelViewViewModel.Models
 {
     public class ZpravaModel
     {
-        public string TextZpravy;
+        static ZpravaModel instance = null;
 
-        public static string[] VsechnyZpravy = new string[2] { "První zpráva", "Druhá zpráva" };
+        // Singleton design pattern
+        private ZpravaModel()
+        {
+            VsechnyZpravy = new List<string>();
+        }
+
+        public static ZpravaModel ZpravaDatabase
+        {
+            // Lazy model - až někdo bude potřebovat databázi zpráv,
+            // tak se vytvoří, ale ne dřív!
+            get
+            {
+                if(instance == null)
+                {
+                    instance = new ZpravaModel();
+                }
+                
+                return instance;
+            }
+        }
+
+        public List<string> VsechnyZpravy;
     }
 }

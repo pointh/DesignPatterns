@@ -9,7 +9,7 @@ namespace Singleton
 {
     class MainMenuNaive
     {
-        List<string> mainAppMenu;
+        readonly List<string> mainAppMenu;
 
         public MainMenuNaive()
         {

@@ -28,18 +28,17 @@ namespace UnitTestModelViewViewModel
         {
             // Arrange
             string testMessage = "Unit test zprava";
-            ZpravaModel z = new ZpravaModel();
-            ZpravaViewModel zvm = new ZpravaViewModel();
+            ZpravaModel z = ZpravaModel.ZpravaDatabase;
+            ZpravaViewModel zvm = new ZpravaViewModel { Zprava = testMessage };
 
             // Act
             // Tohle za nás v aplikaci udělá binding
             // na TextBox a Button. V testu to dokážeme simulovat voláním.
-            zvm.Zprava = testMessage; 
             zvm.SendCommand.Execute(null);
             
             // Assert
             // Ověř, že se zpráva dostala do datového modelu
-            Assert.AreEqual(ZpravaModel.VsechnyZpravy[0], testMessage);
+            Assert.AreEqual(z.VsechnyZpravy[0], testMessage);
         }
     }
 }

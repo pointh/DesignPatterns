@@ -32,7 +32,14 @@ namespace ModelViewViewModel.ViewModels
         public ZpravaViewModel()
         {
             // Inicializace z modelu
-            Zprava = ZpravaModel.VsechnyZpravy[0];
+            if (ZpravaModel.ZpravaDatabase.VsechnyZpravy.Count == 0)
+            {
+                Zprava = "";
+            }
+            else
+            {
+                Zprava = ZpravaModel.ZpravaDatabase.VsechnyZpravy[ZpravaModel.ZpravaDatabase.VsechnyZpravy.Count - 1];
+            }
         }
 
         private string zprava;
@@ -64,7 +71,7 @@ namespace ModelViewViewModel.ViewModels
                             Debug.WriteLine(Zprava);
 
                             // Uložení do modelu
-                            ZpravaModel.VsechnyZpravy[0] = Zprava;
+                            ZpravaModel.ZpravaDatabase.VsechnyZpravy.Add(Zprava);
                         });
                 }
                 return _sendCommand;

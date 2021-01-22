@@ -49,7 +49,7 @@ namespace Singleton
                 // Nepříliš efektivní
                 lock (lockingObject)
                 {
-                    if (mainAppMenu == null)
+                    if (singleInstance == null)
                     {
                         singleInstance = new MainMenu();
                     }

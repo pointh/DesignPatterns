@@ -21,6 +21,7 @@ namespace SqliteApp.ViewModels
         public BookEntryViewModel()
         {
             SaveCommand = new Command(SaveCurrentBook);
+            
             ShowBooksCommand = new Command(ShowBooks);
         }
 

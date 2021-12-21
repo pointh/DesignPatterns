@@ -23,7 +23,6 @@ namespace SqliteAppUnitTest
             bevm.Price = 100.0m;
             bevm.Title = bookName;
             
-
             // Act
             bevm.SaveCommand.Execute(null);
 

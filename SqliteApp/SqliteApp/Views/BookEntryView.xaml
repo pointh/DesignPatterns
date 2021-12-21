@@ -25,6 +25,7 @@
                 <Entry Grid.Column="1" Grid.Row="1" Text="{Binding Price, Converter={StaticResource DecimalToString}}" Placeholder="Zadej cenu" Keyboard="Numeric"/>
             </Grid>
             <Button Text="Ulož" Command="{Binding SaveCommand}"/>
+            <Button Text="Debug books" Command="{Binding ShowBooksCommand}"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

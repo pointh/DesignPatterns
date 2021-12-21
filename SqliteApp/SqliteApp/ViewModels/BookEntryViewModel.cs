@@ -68,7 +68,7 @@ namespace SqliteApp.ViewModels
             set
             {
                 title = value;
-                PropertyChanged.Invoke(this, new PropertyChangedEventArgs("Title"));
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Title"));
             }
         }
 
@@ -79,7 +79,7 @@ namespace SqliteApp.ViewModels
             set
             {
                 price = value;
-                PropertyChanged.Invoke(this, new PropertyChangedEventArgs("Price"));
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Price"));
             }
         }
 

@@ -16,7 +16,8 @@ namespace SqliteAppUnitTest
             string bookName = "Hájili jsme hrad";
             BookEntryViewModel bevm = new BookEntryViewModel();
             _ = bevm.ClearBooksTable();
-            Book book = new SqliteApp.Models.Book { Price = 100.0m, Title = bookName };
+            bevm.Price = 100.0m;
+            bevm.Title = bookName;
 
             // Act
             bevm.SaveCommand.Execute(null);

@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:viewmodels="clr-namespace:SqliteApp.ViewModels" 
+             x:DataType="viewmodels:BookEntryViewModel"
+             x:Class="SqliteApp.Views.BookEntryView">
+    <ContentPage.Resources>
+        <viewmodels:DecimalStringConverter x:Key="DecimalToString"/>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <StackLayout>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <Label Grid.Column="0" Grid.Row="0" Text="Název"/>
+                <Label Grid.Column="0" Grid.Row="1" Text="Cena"/>
+                <Entry Grid.Column="1" Grid.Row="0" Text="{Binding Title}" Placeholder="Zadej název knihy"/>
+                <Entry Grid.Column="1" Grid.Row="1" Text="{Binding Price, Converter={StaticResource DecimalToString}}" Placeholder="Zadej cenu" Keyboard="Numeric"/>
+            </Grid>
+            <Button Text="Ulož" Command="{Binding SaveCommand}"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

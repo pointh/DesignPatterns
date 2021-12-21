@@ -1,20 +1,18 @@
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-
-using SQLite;
-using SqliteApp.Database;
-using SqliteApp.Models;
+using NUnit.Framework;
 using SqliteApp.ViewModels;
-using System.Diagnostics;
-using System;
 using System.Threading.Tasks;
 
-namespace SqliteAppUnitTest
+namespace SqliteAppNUnitTestProject
 {
-    [TestClass]
-    public class UnitTestBookEntryViewModel
+    public class Tests
     {
-        [TestMethod]
-        public async Task TestMethod1()
+        [SetUp]
+        public void Setup()
+        {
+        }
+
+        [Test]
+        public async Task Test1()
         {
             // Arrange
             string bookName = "Hájili jsme hrad";
@@ -22,7 +20,7 @@ namespace SqliteAppUnitTest
             bevm.ClearBooksTable();
             bevm.Price = 100.0m;
             bevm.Title = bookName;
-            
+
 
             // Act
             bevm.SaveCommand.Execute(null);

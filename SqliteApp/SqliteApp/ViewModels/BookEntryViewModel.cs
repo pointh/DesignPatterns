@@ -37,10 +37,10 @@ namespace SqliteApp.ViewModels
             return i;
         }
 
-        public async Task ClearBooksTable()
+        public async void ClearBooksTable()
         {
             SQLiteAsyncConnection db = SqliteBooks.GetInstance;
-            _ = await db.Table<Book>().DeleteAsync();
+            int k = await db.Table<Book>().DeleteAsync((t) => true); ;
         }
 
         public async Task<string> ShowBooksTableStatus()

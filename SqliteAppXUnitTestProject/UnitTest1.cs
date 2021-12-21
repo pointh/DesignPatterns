@@ -1,20 +1,14 @@
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-
-using SQLite;
-using SqliteApp.Database;
-using SqliteApp.Models;
-using SqliteApp.ViewModels;
-using System.Diagnostics;
 using System;
+using Xunit;
+using SqliteApp.ViewModels;
 using System.Threading.Tasks;
 
-namespace SqliteAppUnitTest
+namespace SqliteAppXUnitTestProject
 {
-    [TestClass]
-    public class UnitTestBookEntryViewModel
+    public class UnitTest1
     {
-        [TestMethod]
-        public async Task TestMethod1()
+        [Fact]
+        public async Task Test1()
         {
             // Arrange
             string bookName = "Hájili jsme hrad";
@@ -22,14 +16,13 @@ namespace SqliteAppUnitTest
             bevm.ClearBooksTable();
             bevm.Price = 100.0m;
             bevm.Title = bookName;
-            
 
             // Act
             bevm.SaveCommand.Execute(null);
 
             // Assert
             string s = await bevm.ShowBooksTableStatus();
-            Assert.IsTrue(s.IndexOf(bookName) != -1);
+            Assert.True(s.IndexOf(bookName) != -1);
         }
     }
 }

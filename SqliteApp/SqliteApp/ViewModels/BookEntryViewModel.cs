@@ -20,31 +20,33 @@ namespace SqliteApp.ViewModels
 
         public BookEntryViewModel()
         {
-            SaveCommand = new Command(SaveCurrentBook);
+            SaveCommand = new Command(SaveCurrentBookAsync);
             
-            ShowBooksCommand = new Command(ShowBooks);
+            ShowBooksCommand = new Command(ShowBooksAsync);
         }
 
-        public async void SaveCurrentBook()
+        public async void SaveCurrentBookAsync()
         {
             var book = new Book { Price = Price, Title = Title };
-            _ = await InsertBooksTable(book);
+            int i = await InsertBooksTableAsync(book);
+            Debug.WriteLine($"Uložil {i} knih.");
         }
 
-        public async Task<int> InsertBooksTable(Book b)
+        public async Task<int> InsertBooksTableAsync(Book b)
         {
             SQLiteAsyncConnection db = SqliteBooks.GetInstance;
             int i = await db.InsertAsync(b);
             return i;
         }
 
-        public async void ClearBooksTable()
+        public async Task ClearBooksTableAsync()
         {
             SQLiteAsyncConnection db = SqliteBooks.GetInstance;
-            int k = await db.Table<Book>().DeleteAsync((t) => true); ;
+            int k = await db.Table<Book>().DeleteAsync((t) => true);
+            Debug.WriteLine($"Smazal {k} knih.");
         }
 
-        public async Task<string> ShowBooksTableStatus()
+        public async Task<string> ShowBooksTableStatusAsync()
         {
             StringBuilder sb = new StringBuilder();
 
@@ -56,9 +58,9 @@ namespace SqliteApp.ViewModels
             return sb.ToString();
         }
 
-        public async void ShowBooks()
+        public async void ShowBooksAsync()
         {
-            string s = await ShowBooksTableStatus();
+            string s = await ShowBooksTableStatusAsync();
             Debug.WriteLine(s);
         }
 

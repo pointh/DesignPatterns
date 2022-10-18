@@ -10,6 +10,6 @@ namespace DependencyInjection.Validators
     // Poskytuje službu validace vstupu typu string
     class SurnameValidator : IStringValidator
     {
-        public bool IsValid(string s) { return s.Length > 1; }
+        public bool IsValid(string s) { return s.Length > 1 && char.IsUpper(s[0]); }
     }
 }

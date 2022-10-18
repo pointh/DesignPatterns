@@ -20,7 +20,7 @@ namespace DependencyInjection.Validators
                 return false;
             }
 
-            if (i > 0 && i < 150) // protože rozsah
+            if (i > 0 && i < 100) // protože rozsah
             {
                 retVal = i;
                 return true;

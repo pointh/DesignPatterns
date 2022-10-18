@@ -19,7 +19,8 @@ namespace DependencyInjection
         // závislost je injektovaná v konstruktoru
         public Osoba(IIntValidator iv, IStringValidator sv)
         {
-            vekValidator = iv; surnameValidator = sv;
+            vekValidator = iv; 
+            surnameValidator = sv;
         }
 
         public Osoba() { vekValidator = null; surnameValidator = null; }
@@ -31,7 +32,7 @@ namespace DependencyInjection
 
             do
             {
-                Console.Write("Příjmení: ");
+                Console.Write("Příjmení studenta: ");
                 string s = Console.ReadLine();
                 if (string.IsNullOrEmpty(s)) return;
                 if (nameOK = surnameValidator.IsValid(s))
@@ -43,7 +44,7 @@ namespace DependencyInjection
 
             do
             {
-                Console.Write("Věk: ");
+                Console.Write("Věk studenta: ");
                 string s = Console.ReadLine();
                 if (string.IsNullOrEmpty(s)) return;
                 if(vekOK = vekValidator.IsValid(s, out int vek))
